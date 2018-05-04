@@ -12,7 +12,7 @@ var secondsLeft = document.getElementById('secondsRemaining');
 //array used to store questions. Using the array with make it easy to loop through the answers and checking for the correct one. Questions will be updated with a theme. These are placeholder.
 var myQuestions = [{
         question: "What is the capital of Canada?",
-        answer: {
+        currentAnswers: {
             a: "Toronto",
             b: "Winnipeg",
             c: "Ottawa",
@@ -22,7 +22,7 @@ var myQuestions = [{
     },
     {
         question: "What is the capital of Canada?",
-        answer: {
+        currentAnswers: {
             a: "Toronto",
             b: "Winnipeg",
             c: "Ottawa",
@@ -32,7 +32,7 @@ var myQuestions = [{
     },
     {
         question: "What is the capital of Canada?",
-        answer: {
+        currentAnswers: {
             a: "Toronto",
             b: "Winnipeg",
             c: "Ottawa",
@@ -42,7 +42,7 @@ var myQuestions = [{
     },
     {
         question: "What is the capital of Canada?",
-        answer: {
+        currentAnswers: {
             a: "Toronto",
             b: "Winnipeg",
             c: "Ottawa",
@@ -63,13 +63,13 @@ function createContent() {
 
             for(letter in currentQuestion.currentAnswers){
                 //creates the buttons for user selections
-                currentAnswers.push(
+                currentAnswers.push(    
             //` es6 use of template strings to allow us to create html with possible answer. Embeding the Javasctipt into strings. Id call these super strings
                  `<label>
                         <input type="radio" name="question${questionNumber}" value="${letter}">
                             ${letter} :
                             ${currentQuestion.currentAnswers[letter]}
-                    </label>`
+                </label>`
                 );
             }
 
@@ -102,7 +102,8 @@ function rateOfClock() {
 
 function decrease() {
     setTime--;
-    document.getElementById('secondsRemaining').innerHTML = setTime;
+   // document.getElementById('secondsRemaining').innerHTML = setTime;
+ //   document.getElementById('secondsRemaining').innerHTML = setTime;
     if (setTime == 0) {
         stopClock();
     }
