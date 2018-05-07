@@ -8,7 +8,7 @@ var questionTitle = document.getElementById('questionTitle');
 var questionList = document.getElementById('questionList');
 var confirmBtn = document.getElementById('confirmBtn');
 var secondsLeft = document.getElementById('secondsRemaining');
-
+var resultsArea = document.getElementById('resultsArea');
 //array used to store questions. Using the array with make it easy to loop through the answers and checking for the correct one. Questions will be updated with a theme. These are placeholder.
 var myQuestions = [{
         question: "What is the capital of Canada?",
@@ -85,9 +85,33 @@ function createContent() {
 
 createContent();
 
-
 function results() {
+     //get the ansers from the elements that have the answer class within our quizArea div
+    var answerArea = quizArea.querySelectorAll('.answers');
+    //keeps track of correct answers.
+    var correctAnswers = 0;
 
+    //for each one of the questions...
+    myQuestions.forEach ( (currentQuestion, questionNumber) => {
+
+    var answerArea = answerArea[questionNumber];
+    var selector = 'input[name=question' + questionNumber + ']:checked';
+    //searches for the input buttons that have the :checked class. by doing this we can find the button that was pressed. We use .value to get the value of the answer. 
+
+    // using ||or|| we are able to get the value and if there isnt a selected answer we have stored the selector
+    var userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+    //if the answer is correct
+    if(userAnswer ===currentQuestion.correctAnswer){
+        correctAnswers++;
+    //change answer colors if they are right or wrong and keep track of the score of correct answers. 
+        answerArea[questionNumber].style.color = 'lightgreen'; 
+    }else{
+        answerArea[questionNumber].style.color = 'red';
+    }
+    });
+    //display to the user the score they received at the end of the quiz
+    resultsArea.innerHTML = correctAnswers + ' out of ' + myQuestions.length;
 }
 
 
@@ -123,4 +147,4 @@ rateOfClock();
 // startTime = function(){
 //      timeInterval = setTimeout(, 30000);
 //     // document.getElementById('')
-// }
+//
