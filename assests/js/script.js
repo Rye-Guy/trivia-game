@@ -87,27 +87,27 @@ createContent();
 
 function results() {
      //get the ansers from the elements that have the answer class within our quizArea div
-    var answerArea = quizArea.querySelectorAll('.answers');
+    var answerContainers = quizArea.querySelectorAll('.answers');
     //keeps track of correct answers.
     var correctAnswers = 0;
 
     //for each one of the questions...
     myQuestions.forEach ( (currentQuestion, questionNumber) => {
 
-    var answerArea = answerArea[questionNumber];
+    var answerArea = answerContainers[questionNumber];
     var selector = 'input[name=question' + questionNumber + ']:checked';
     //searches for the input buttons that have the :checked class. by doing this we can find the button that was pressed. We use .value to get the value of the answer. 
 
     // using ||or|| we are able to get the value and if there isnt a selected answer we have stored the selector
-    var userAnswer = (answerContainer.querySelector(selector) || {}).value;
+    var userAnswer = (answerArea.querySelector(selector) || {}).value;
 
     //if the answer is correct
     if(userAnswer ===currentQuestion.correctAnswer){
         correctAnswers++;
     //change answer colors if they are right or wrong and keep track of the score of correct answers. 
-        answerArea[questionNumber].style.color = 'lightgreen'; 
+        answerContainers[questionNumber].style.color = 'lightgreen'; 
     }else{
-        answerArea[questionNumber].style.color = 'red';
+        answerContainers[questionNumber].style.color = 'red';
     }
     });
     //display to the user the score they received at the end of the quiz
