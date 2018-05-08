@@ -11,7 +11,9 @@ var resultsArea = document.getElementById('resultsArea');
 //variables for pagination 
 var previousButton = document.getElementById('prev');
 var nextButton = document.getElementById('next');
-var slides = document.querySelectorAll('.slide');
+var startQuiz = document.getElementById('startQuiz');
+var timeArea = document.getElementById('timeArea');
+var slides = document.getElementsByClassName('slide');
 var currentSlide = 0; 
 //array used to store questions. Using the array with make it easy to loop through the answers and checking for the correct one. Questions will be updated with a theme. These are placeholder.
 var myQuestions = [{
@@ -110,7 +112,9 @@ function results() {
     if(userAnswer === currentQuestion.correctAnswer){
         correctAnswers++;
     //change answer colors if they are right or wrong and keep track of the score of correct answers. 
-        answerContainers[questionNumber].style.color = 'lightgreen'; 
+        answerContainers[questionNumber].style.color = 'lightgreen';
+        
+        
     }else{
         answerContainers[questionNumber].style.color = 'red';
     }
@@ -120,29 +124,42 @@ function results() {
 }
 
 // //function that controls pagination
-//  function showSlide(x){
-//      slides[currentSlide].classList.remove('active-slide');
-//      slides[x].classList.add('active-slide');
-//      currentSlide = x;
-//     if(currentSlide === 0){
-//         //hides the previous button on the first slide and displays for everything else.
-//         previousButton.style.display = 'none';
-//     }
-//     else{
-//         previousButton.style.display = 'inline-block';
-//         //if its the last slide
-//     }if(currentSlide === slides.length - 1){
-//         //hides submit thorugh the quiz and shows nextButton 
-//         nextButton.style.display = 'none';
-//         submitButton.style.display = 'inline-block';
-//     }else{
-//         //hides the next button and shows submit
-//         nextButton.style.display = 'inline-block';
-//         submitButton.style.display = 'none';
-//     }
-//  }
+ function showSlide(x){
+     slides[currentSlide].classList.remove('active-slide');
+     slides[x].classList.add('active-slide');
+     startQuiz.style.display = 'none';
+     currentSlide = x;
+   if(currentSlide === 0){
+        //hides the previous button on the first slide and displays for everything else.
+      previousButton.style.display = 'none';
+      nextButton.style.display = 'none';
+      startQuiz.style.display = 'none';
+
+        
+   }
+    else{
+        previousButton.style.display = 'inline-block';
+        //if its the last slide
+    }if(currentSlide === slides.length - 1){
+        //hides submit thorugh the quiz and shows nextButton 
+        nextButton.style.display = 'none';
+        confirmBtn.style.display = 'inline-block';
+    }else{
+        //hides the next button and shows submit
+        nextButton.style.display = 'inline-block';
+        confirmBtn.style.display = 'none';
+    }
+ }
 //functions used to move page slides either add or substracting from the current slide number. We pass 0 later as the default. 
- function nextSlide(){
+
+function beginGame(){
+    showSlide(currentSlide = 0);
+    rateOfClock();
+    timeArea.style.display = 'block';
+
+}
+
+function nextSlide(){
      showSlide(currentSlide + 1);
  }
 
@@ -151,10 +168,14 @@ function results() {
     showSlide(currentSlide - 1);
 }
 
+
 previousButton.addEventListener("click", prevSlide);
+previousButton.style.display = 'none';
 nextButton.addEventListener("click", nextSlide);
-
-
+nextButton.style.display = 'none';
+confirmBtn.style.display = 'none';
+timeArea.style.display = 'none';
+startQuiz.addEventListener("click", beginGame);
 
  //sets the default to 0 so the page load page 0 first. 
  //showSlide(0);
@@ -180,8 +201,13 @@ function decrease() {
     if (setTime == -1) {
        // nextSlide();
         stopClock();
-        setTime = 30;
+        setTime = 3;
         rateOfClock();
+        nextSlide();
+    }else if(currentSlide === 3){
+        stopClock();
+        results();
+        timeArea.style.display = 'none';
     }
 }
 
@@ -190,7 +216,7 @@ function stopClock() {
 }
 
 createContent();
-rateOfClock();
+
 
 
 
