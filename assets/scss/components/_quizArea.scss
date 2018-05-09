@@ -7,12 +7,32 @@
         opacity: 0;
         transition: opacity 0.5s;
       }
+      .question{
+        font-size: 2.4rem;
+        margin-top: 1.6rem;
+        text-align: center;
+        color: white;
+      }
+      .answers{
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+      }
+      label{
+        padding-bottom: 7px;
+        padding-top: 7px;
+      } 
       .active-slide{
         opacity: 1;
         z-index: 2;
       }
       .quiz-container{
         position: relative;
-        height: 200px;
-        margin-top: 40px;
+        height: 23.5rem;
+        width: 60rem;
+        margin: 0 auto;
+        background-color: $color4;
+        border-radius: 3.8rem;
+        border: .3rem solid $color3;
+        margin-top: 3.5rem;
       }

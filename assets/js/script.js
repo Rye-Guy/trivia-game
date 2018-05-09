@@ -1,6 +1,5 @@
 //variables to get everything started. 
 var wrongAnswer;
-
 //Were going to be using these later
 var quizArea = document.getElementById('quizArea');
 var questionTitle = document.getElementById('questionTitle');
@@ -73,8 +72,8 @@ function createContent() {
             //` es6 use of template strings to allow us to create html with possible answer. Embeding the Javasctipt into strings. Id call these super strings
                  `<label>
                         <input type="radio" name="question${questionNumber}" value="${letter}">
-                            ${letter} :
-                            ${currentQuestion.currentAnswers[letter]}
+                            <span class="label-text">${letter} :
+                            ${currentQuestion.currentAnswers[letter]}</span>
                 </label>`
                 );
             }
@@ -108,12 +107,12 @@ function results() {
     // using ||or|| we are able to get the value and if there isnt a selected answer we have stored the selector
     var userAnswer = (answerArea.querySelector(selector) || {}).value;
 
+    
     //if the answer is correct
     if(userAnswer === currentQuestion.correctAnswer){
         correctAnswers++;
     //change answer colors if they are right or wrong and keep track of the score of correct answers. 
         answerContainers[questionNumber].style.color = 'lightgreen';
-        
         
     }else{
         answerContainers[questionNumber].style.color = 'red';
@@ -121,8 +120,28 @@ function results() {
     });
     //display to the user the score they received at the end of the quiz
     resultsArea.innerHTML = correctAnswers + ' out of ' + myQuestions.length;
+
+   
 }
 
+    function currentResults(currentQuestion, questionNumber){
+        currentScore = 0; 
+       var answerContainers = quizArea.querySelectorAll('.answers');
+       var answerArea = answerContainers[questionNumber];
+     //   var selector = 'input[name=question' + questionNumber + ']:checked';
+       var userAnswer = (answerArea.querySelector(selector) || {}).value;
+        if(userAnswer === currentQuestion.correctAnswer){
+            alert("you got it");
+            currentScore++;
+        }else{
+            alert('you are wrong!');
+        }
+}
+
+confirmBtn.addEventListener('click', currentResults);
+
+
+console.log(myQuestions.currentQuestion);
 // //function that controls pagination
  function showSlide(x){
      slides[currentSlide].classList.remove('active-slide');
@@ -134,11 +153,9 @@ function results() {
       previousButton.style.display = 'none';
       nextButton.style.display = 'none';
       startQuiz.style.display = 'none';
-
-        
    }
     else{
-        previousButton.style.display = 'inline-block';
+       // previousButton.style.display = 'inline-block';
         //if its the last slide
     }if(currentSlide === slides.length - 1){
         //hides submit thorugh the quiz and shows nextButton 
@@ -147,33 +164,36 @@ function results() {
     }else{
         //hides the next button and shows submit
         nextButton.style.display = 'inline-block';
-        confirmBtn.style.display = 'none';
+      //  confirmBtn.style.display = 'none';
     }
  }
 //functions used to move page slides either add or substracting from the current slide number. We pass 0 later as the default. 
 
+var index = 0;
+
 function beginGame(){
-    showSlide(currentSlide = 0);
+    showSlide(currentSlide = index);
     rateOfClock();
     timeArea.style.display = 'block';
 
 }
 
 function nextSlide(){
-     showSlide(currentSlide + 1);
+    setTime = 3;
+     showSlide(currentSlide + (index + 1));
  }
 
 
  function prevSlide(){
-    showSlide(currentSlide - 1);
+     setTime = 3;
+    showSlide(currentSlide + (index - 1));
 }
-
 
 previousButton.addEventListener("click", prevSlide);
 previousButton.style.display = 'none';
 nextButton.addEventListener("click", nextSlide);
 nextButton.style.display = 'none';
-confirmBtn.style.display = 'none';
+//confirmBtn.style.display = 'none';
 timeArea.style.display = 'none';
 startQuiz.addEventListener("click", beginGame);
 
@@ -181,7 +201,6 @@ startQuiz.addEventListener("click", beginGame);
  //showSlide(0);
 
 
-confirmBtn.addEventListener('click', results);
 
 var setTime = 3;
 var timeInterval;
@@ -203,6 +222,7 @@ function decrease() {
         stopClock();
         setTime = 3;
         rateOfClock();
+        //currentResults();
         nextSlide();
     }else if(currentSlide === 3){
         stopClock();
@@ -216,11 +236,6 @@ function stopClock() {
 }
 
 createContent();
-
-
-
-
-
 
 // startTime = function(){
 //      timeInterval = setTimeout(, 30000);
