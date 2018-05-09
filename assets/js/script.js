@@ -13,6 +13,7 @@ var nextButton = document.getElementById('next');
 var startQuiz = document.getElementById('startQuiz');
 var timeArea = document.getElementById('timeArea');
 var slides = document.getElementsByClassName('slide');
+var instructions = document.getElementById('instructions');
 var currentSlide = 0; 
 //array used to store questions. Using the array with make it easy to loop through the answers and checking for the correct one. Questions will be updated with a theme. These are placeholder.
 var myQuestions = [{
@@ -57,7 +58,10 @@ var myQuestions = [{
     },
 ]
 
+    instructions.innerHTML = "<h3>Press Start Quiz to Begin<br>You have 15 seconds to answer each question<br>Press next question if your comfortable with your answer<br>Good Luck!</h3>"
+
 function createContent() {
+ 
 // variable that stores the html
     var output = [];
 //will be going through all questions. ForEach allows us to go into the myQuestions array and take the value, index and the array itself as peramaters. For this situation we only need the index and the value so currentQuestion and number will work. 
@@ -124,21 +128,21 @@ function results() {
    
 }
 
-    function currentResults(currentQuestion, questionNumber){
-        currentScore = 0; 
-       var answerContainers = quizArea.querySelectorAll('.answers');
-       var answerArea = answerContainers[questionNumber];
-     //   var selector = 'input[name=question' + questionNumber + ']:checked';
-       var userAnswer = (answerArea.querySelector(selector) || {}).value;
-        if(userAnswer === currentQuestion.correctAnswer){
-            alert("you got it");
-            currentScore++;
-        }else{
-            alert('you are wrong!');
-        }
-}
+    // function currentResults(currentQuestion, questionNumber){
+    //     currentScore = 0; 
+    //    var answerContainers = quizArea.querySelectorAll('.answers');
+    //    var answerArea = answerContainers[questionNumber];
+    //  //   var selector = 'input[name=question' + questionNumber + ']:checked';
+    //    var userAnswer = (answerArea.querySelector(selector) || {}).value;
+    //     if(userAnswer === currentQuestion.correctAnswer){
+    //         alert("you got it");
+    //         currentScore++;
+    //     }else{
+    //         alert('you are wrong!');
+    //     }
+//}
 
-confirmBtn.addEventListener('click', currentResults);
+//confirmBtn.addEventListener('click', currentResults);
 
 
 console.log(myQuestions.currentQuestion);
@@ -175,17 +179,17 @@ function beginGame(){
     showSlide(currentSlide = index);
     rateOfClock();
     timeArea.style.display = 'block';
-
+    instructions.style.display = 'none';
 }
 
 function nextSlide(){
-    setTime = 3;
+    setTime = 15;
      showSlide(currentSlide + (index + 1));
  }
 
 
  function prevSlide(){
-     setTime = 3;
+   //  setTime = 3;
     showSlide(currentSlide + (index - 1));
 }
 
@@ -193,7 +197,7 @@ previousButton.addEventListener("click", prevSlide);
 previousButton.style.display = 'none';
 nextButton.addEventListener("click", nextSlide);
 nextButton.style.display = 'none';
-//confirmBtn.style.display = 'none';
+confirmBtn.style.display = 'none';
 timeArea.style.display = 'none';
 startQuiz.addEventListener("click", beginGame);
 
@@ -202,7 +206,7 @@ startQuiz.addEventListener("click", beginGame);
 
 
 
-var setTime = 3;
+var setTime = 15;
 var timeInterval;
 
 function rateOfClock() {
@@ -220,14 +224,15 @@ function decrease() {
     if (setTime == -1) {
        // nextSlide();
         stopClock();
-        setTime = 3;
+        setTime = 15;
         rateOfClock();
         //currentResults();
         nextSlide();
-    }else if(currentSlide === 3){
+    }else if(currentSlide === 3 & setTime == -1){
         stopClock();
         results();
         timeArea.style.display = 'none';
+        confirmBtn.style.display = 'inline-block';
     }
 }
 

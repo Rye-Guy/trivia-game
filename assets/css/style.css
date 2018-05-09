@@ -16,6 +16,13 @@ body {
 .answers {
   font-size: 1.6rem; }
 
+#instructions {
+  text-align: center;
+  line-height: 1.5;
+  font-size: 2rem;
+  letter-spacing: -1px;
+  margin-top: 40px; }
+
 .slide {
   position: absolute;
   left: 0px;
