@@ -15,10 +15,12 @@ var timeArea = document.getElementById('timeArea');
 var slides = document.getElementsByClassName('slide');
 var instructions = document.getElementById('instructions');
 var thrAnswers = document.getElementById('theAnswers');
+var resetBtn = document.getElementById('reset');
 var currentSlide = 0; 
 //array used to store questions. Using the array with make it easy to loop through the answers and checking for the correct one. Questions will be updated with a theme. These are placeholder.
-var myQuestions = [{
-        question: "What is the capital of Canada?",
+var myQuestions = [
+    {
+        question: "What is the name of Batman’s butler?",
         currentAnswers: {
             a: "Toronto",
             b: "Winnipeg",
@@ -28,7 +30,7 @@ var myQuestions = [{
         correctAnswer: "a"
     },
     {
-        question: "What is the capital of Canada?",
+        question: "What is city does Batman watch over?",
         currentAnswers: {
             a: "Toronto",
             b: "Winnipeg",
@@ -38,7 +40,7 @@ var myQuestions = [{
         correctAnswer: "b"
     },
     {
-        question: "What is the capital of Canada?",
+        question: "Whats the name of batmans car?",
         currentAnswers: {
             a: "Toronto",
             b: "Winnipeg",
@@ -57,9 +59,30 @@ var myQuestions = [{
         },
         correctAnswer: "d"
     },
+    {
+        question: "What is the capital of Canada?",
+        currentAnswers: {
+            a: "Toronto",
+            b: "Winnipeg",
+            c: "Ottawa",
+            d: "Vancouver"
+        },
+        correctAnswer: "d"
+    },
+    {
+        question: "What is the capital of Canada?",
+        currentAnswers: {
+            a: "Toronto",
+            b: "Winnipeg",
+            c: "Ottawa",
+            d: "Vancouver"
+        },
+        correctAnswer: "d"
+    },
 ]
 
     instructions.innerHTML = "<h3>Press Start Quiz to Begin<br>You have 15 seconds to answer each question<br>Press next question if your comfortable with your answer<br>Good Luck!</h3>"
+    quizArea.style.display = 'none';
 
 function createContent() {
  
@@ -125,10 +148,9 @@ function results() {
     }
     });
     //display to the user the score they received at the end of the quiz
+    quizArea.style.display = 'none'
     resultsArea.innerHTML = 'Score: ' + correctAnswers + ' out of ' + myQuestions.length;
     theAnswers.innerHTML = wrongAnswers.join(" ");
-
-   
 }
 
     // function currentResults(currentQuestion, questionNumber){
@@ -152,6 +174,7 @@ confirmBtn.addEventListener('click', endGame);
      slides[currentSlide].classList.remove('active-slide');
      slides[x].classList.add('active-slide');
      startQuiz.style.display = 'none';
+     quizArea.style.display = 'block';
      currentSlide = x;
    if(currentSlide === 0){
         //hides the previous button on the first slide and displays for everything else.
@@ -171,27 +194,33 @@ confirmBtn.addEventListener('click', endGame);
         nextButton.style.display = 'inline-block';
       //  confirmBtn.style.display = 'none';
     }
+    
  }
+
 //functions used to move page slides either add or substracting from the current slide number. We pass 0 later as the default. 
 
-var index = 0;
+//var index = 0;
+
 
 function beginGame(){
-    showSlide(currentSlide = index);
+    showSlide(currentSlide);
     rateOfClock();
     timeArea.style.display = 'block';
     instructions.style.display = 'none';
+
 }
 
 function nextSlide(){
+    slides[currentSlide].classList.remove('active-slide');
     setTime = 15;
-     showSlide(currentSlide + (index++));
+    currentSlide++;
+     showSlide(currentSlide);
  }
 
 
  function prevSlide(){
    //  setTime = 3;
-    showSlide(currentSlide + (index--));
+    showSlide(currentSlide--);
 }
 
 previousButton.addEventListener("click", prevSlide);
@@ -200,6 +229,7 @@ nextButton.addEventListener("click", nextSlide);
 nextButton.style.display = 'none';
 confirmBtn.style.display = 'none';
 timeArea.style.display = 'none';
+resetBtn.style.display = 'none';
 startQuiz.addEventListener("click", beginGame);
 
  //sets the default to 0 so the page load page 0 first. 
@@ -213,7 +243,6 @@ var timeInterval;
 function rateOfClock() {
     clearInterval(timeInterval);
     timeInterval = setInterval(decrease, 1000);
-  
 }
 
 function decrease() {
@@ -229,10 +258,10 @@ function decrease() {
         rateOfClock();
         //currentResults();
         nextSlide();
-    }else if(index >= 4){
+    }else if(currentSlide >= 6){
         stopClock();
         results();
-        timeArea.style.display = 'none';
+        endGame();
         confirmBtn.style.display = 'inline-block';
     }
 }
@@ -240,13 +269,28 @@ function decrease() {
 function endGame(){
     stopClock();
     results();
+    confirmBtn.style.display = 'none';
     timeArea.style.display = 'none';
     quizArea.innerHTML = ' ';
+    resetBtn.style.display = 'inline-block';
 }
 
 function stopClock() {
     clearInterval(timeInterval);
 }
+
+function restartGame(){
+    rateOfClock();
+    currentSlide = 0; 
+    theAnswers.style.display = 'none';
+    createContent();
+    quizArea.style.display = 'block';
+    resultsArea.style.display = 'none';
+    beginGame();
+    resetBtn.style.display = 'none';
+}
+
+resetBtn.addEventListener("click", restartGame);
 
 createContent();
 

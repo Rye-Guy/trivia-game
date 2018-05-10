@@ -68,7 +68,7 @@ label {
 
 .quiz-container {
   position: relative;
-  height: 23.5rem;
+  max-height: 60rem;
   width: 60rem;
   margin: 0 auto;
   background-color: #02c39a;
@@ -84,7 +84,10 @@ label {
 
 #timeArea {
   text-align: center;
-  font-size: 36px; }
+  font-size: 3.6rem; }
+
+#quizArea {
+  height: 22rem; }
 
 label {
   cursor: pointer;
