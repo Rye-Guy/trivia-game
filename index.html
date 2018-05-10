@@ -12,6 +12,7 @@
   <!--<link rel="stylesheet" href="css/styles.css">-->
 </head>
 <body>
+    <p id="timeArea">Seconds Remaining: <span id="secondsRemaining"></span></p>
   <div class="quiz-container">
     <div id="instructions"></div>
     <div id="quizArea">
@@ -20,13 +21,14 @@
     </ul>
   </div>
 </div>
+  <div class="contentArea">
+    <button class="btn" id="prev">Previous Question</button>
+    <button class="btn" id="next">Next Question</button>
+    <button class="btn" id="confirmBtn">Submit Question</button>
+    <button class="btn" id="startQuiz">Start Quiz</button>
+    <div id="resultsArea"></div>
+  </div>
 
-  <button id="prev">Previous Question</button>
-  <button id="next">Next Question</button>
-  <button id="confirmBtn">Submit Question</button>
-  <button id="startQuiz">StartQuiz</button>
-  <p id="timeArea">Seconds Remaining: <span id="secondsRemaining"></span></p>
-  <div id="resultsArea"></div>
   <script src="assets/js/script.js"></script>
 </body>
 </html>

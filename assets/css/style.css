@@ -61,6 +61,16 @@ label {
   border: 0.3rem solid #00a896;
   margin-top: 3.5rem; }
 
+.contentArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4.8rem; }
+
+#timeArea {
+  text-align: center;
+  font-size: 36px; }
+
 label {
   cursor: pointer;
   margin-top: 1rem;
@@ -100,3 +110,39 @@ label {
     transform: scale(0); }
   100% {
     transform: scale(1); } }
+
+.btn {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #00a897), color-stop(1, #02c399));
+  background: -moz-linear-gradient(top, #00a897 5%, #02c399 100%);
+  background: -webkit-linear-gradient(top, #00a897 5%, #02c399 100%);
+  background: -o-linear-gradient(top, #00a897 5%, #02c399 100%);
+  background: -ms-linear-gradient(top, #00a897 5%, #02c399 100%);
+  background: linear-gradient(to bottom, #00a897 5%, #02c399 100%);
+  background-color: #00a897;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #00a897;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 18px;
+  padding: 12px 30px;
+  text-decoration: none;
+  outline: none;
+  transition: ease all .5s; }
+  .btn:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #02c399), color-stop(1, #00a897));
+    background: -moz-linear-gradient(top, #02c399 5%, #00a897 100%);
+    background: -webkit-linear-gradient(top, #02c399 5%, #00a897 100%);
+    background: -o-linear-gradient(top, #02c399 5%, #00a897 100%);
+    background: -ms-linear-gradient(top, #02c399 5%, #00a897 100%);
+    background: linear-gradient(to bottom, #02c399 5%, #00a897 100%);
+    background-color: #02c399;
+    transform: scale(1.08); }
+  .btn:active {
+    outline: none;
+    position: relative;
+    top: 1px;
+    transform: scale(1.02); }

@@ -36,3 +36,15 @@
         border: .3rem solid $color3;
         margin-top: 3.5rem;
       }
+
+      .contentArea{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 4.8rem;
+      }
+
+      #timeArea{
+        text-align: center;
+        font-size: 36px;
+      }
