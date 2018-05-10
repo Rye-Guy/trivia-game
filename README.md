@@ -1,3 +1,4 @@
 # trivia-game
-<h1>Welcome to my Trivia game<h1>
-<p>You can find it by pressing the <a href="">link</a> here!</p>
+<h1>Welcome to my Trivia game
+<p>You can find it by pressing the <a href="https://">link</a> here!</p>
+</h1>
