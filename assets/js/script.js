@@ -7,13 +7,14 @@ var questionList = document.getElementById('questionList');
 var confirmBtn = document.getElementById('confirmBtn');
 var secondsLeft = document.getElementById('secondsRemaining');
 var resultsArea = document.getElementById('resultsArea');
-//variables for pagination 
+//variables for pagination
 var previousButton = document.getElementById('prev');
 var nextButton = document.getElementById('next');
 var startQuiz = document.getElementById('startQuiz');
 var timeArea = document.getElementById('timeArea');
 var slides = document.getElementsByClassName('slide');
 var instructions = document.getElementById('instructions');
+var thrAnswers = document.getElementById('theAnswers');
 var currentSlide = 0; 
 //array used to store questions. Using the array with make it easy to loop through the answers and checking for the correct one. Questions will be updated with a theme. These are placeholder.
 var myQuestions = [{
@@ -100,6 +101,8 @@ function results() {
     var answerContainers = quizArea.querySelectorAll('.answers');
     //keeps track of correct answers.
     var correctAnswers = 0;
+    //wrong question array
+    var wrongAnswers = [];
 
     //for each one of the questions...
     myQuestions.forEach ( (currentQuestion, questionNumber) => {
@@ -115,15 +118,15 @@ function results() {
     //if the answer is correct
     if(userAnswer === currentQuestion.correctAnswer){
         correctAnswers++;
-    //change answer colors if they are right or wrong and keep track of the score of correct answers. 
-        answerContainers[questionNumber].style.color = 'lightgreen';
+
         
-    }else{
-        answerContainers[questionNumber].style.color = 'red';
+    }else{ 
+        wrongAnswers.push("<li class='answerListItem'>" + "For question " + (questionNumber + 1) + " the correct answer is " + currentQuestion.correctAnswer + ".</li>");
     }
     });
     //display to the user the score they received at the end of the quiz
-    resultsArea.innerHTML = correctAnswers + ' out of ' + myQuestions.length;
+    resultsArea.innerHTML = 'Score: ' + correctAnswers + ' out of ' + myQuestions.length;
+    theAnswers.innerHTML = wrongAnswers.join(" ");
 
    
 }
@@ -142,10 +145,8 @@ function results() {
     //     }
 //}
 
-//confirmBtn.addEventListener('click', currentResults);
+confirmBtn.addEventListener('click', endGame);
 
-
-console.log(myQuestions.currentQuestion);
 // //function that controls pagination
  function showSlide(x){
      slides[currentSlide].classList.remove('active-slide');
@@ -184,13 +185,13 @@ function beginGame(){
 
 function nextSlide(){
     setTime = 15;
-     showSlide(currentSlide + (index + 1));
+     showSlide(currentSlide + (index++));
  }
 
 
  function prevSlide(){
    //  setTime = 3;
-    showSlide(currentSlide + (index - 1));
+    showSlide(currentSlide + (index--));
 }
 
 previousButton.addEventListener("click", prevSlide);
@@ -228,12 +229,19 @@ function decrease() {
         rateOfClock();
         //currentResults();
         nextSlide();
-    }else if(currentSlide === 3 & setTime == -1){
+    }else if(index >= 4){
         stopClock();
         results();
         timeArea.style.display = 'none';
         confirmBtn.style.display = 'inline-block';
     }
+}
+
+function endGame(){
+    stopClock();
+    results();
+    timeArea.style.display = 'none';
+    quizArea.innerHTML = ' ';
 }
 
 function stopClock() {
