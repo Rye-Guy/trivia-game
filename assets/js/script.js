@@ -22,62 +22,62 @@ var myQuestions = [
     {
         question: "What is the name of Batman’s butler?",
         currentAnswers: {
-            a: "Toronto",
-            b: "Winnipeg",
-            c: "Ottawa",
-            d: "Vancouver"
+            a: "Jimmy",
+            b: "Greg",
+            c: "Erica",
+            d: "Alfred"
         },
-        correctAnswer: "a"
+        correctAnswer: "d"
     },
     {
         question: "What is city does Batman watch over?",
         currentAnswers: {
             a: "Toronto",
             b: "Winnipeg",
-            c: "Ottawa",
-            d: "Vancouver"
-        },
-        correctAnswer: "b"
-    },
-    {
-        question: "Whats the name of batmans car?",
-        currentAnswers: {
-            a: "Toronto",
-            b: "Winnipeg",
-            c: "Ottawa",
+            c: "Gotham",
             d: "Vancouver"
         },
         correctAnswer: "c"
     },
     {
-        question: "What is the capital of Canada?",
+        question: "Whats the name of Batman's car?",
         currentAnswers: {
-            a: "Toronto",
-            b: "Winnipeg",
-            c: "Ottawa",
-            d: "Vancouver"
+            a: "The Batmobile",
+            b: "La Nora",
+            c: "The Pussy Wagon",
+            d: "The Pimpmoblie"
+        },
+        correctAnswer: "a"
+    },
+    {
+        question: "What is the name of Batman's arch nemesis?",
+        currentAnswers: {
+            a: "The Joker",
+            b: "The Smoker",
+            c: "The Midnight Toker",
+            d: "I get my lovin' on the run"
+        },
+        correctAnswer: "a"
+    },
+    {
+        question: "Who trained Bruce Wayne?",
+        currentAnswers: {
+            a: "Ra's al Ghul",
+            b: "Bruce Lee",
+            c: "He's Self Taught",
+            d: "Kirigi"
         },
         correctAnswer: "d"
     },
     {
-        question: "What is the capital of Canada?",
+        question: "What is Batman's signature Tool?",
         currentAnswers: {
-            a: "Toronto",
-            b: "Winnipeg",
-            c: "Ottawa",
-            d: "Vancouver"
+            a: "The Batarang",
+            b: "Bat Shark Repellent",
+            c: "Finger Taser",
+            d: "Bat-Ice Skates"
         },
-        correctAnswer: "d"
-    },
-    {
-        question: "What is the capital of Canada?",
-        currentAnswers: {
-            a: "Toronto",
-            b: "Winnipeg",
-            c: "Ottawa",
-            d: "Vancouver"
-        },
-        correctAnswer: "d"
+        correctAnswer: "a"
     },
 ]
 
